@@ -1,0 +1,21 @@
+{
+  "started_at_utc": "2026-07-25T06:21:53.000857+00:00",
+  "finished_at_utc": "2026-07-25T06:23:32.609382+00:00",
+  "requested_video_count": 30,
+  "metadata_video_count": 30,
+  "completed_video_count": 27,
+  "comments_disabled_video_count": 3,
+  "failed_video_count": 0,
+  "processed_comment_count": 4416,
+  "new_comment_count": 4405,
+  "stored_comment_count": 4405,
+  "include_replies": true,
+  "max_comments_per_video": 0,
+  "order": "time",
+  "files": {
+    "videos_csv": "C:\\Users\\Admin\\Desktop\\voz_crawler\\data\\raw\\youtube_links\\videos.csv",
+    "comments_csv": "C:\\Users\\Admin\\Desktop\\voz_crawler\\data\\raw\\youtube_links\\comments.csv",
+    "comments_jsonl": "C:\\Users\\Admin\\Desktop\\voz_crawler\\data\\raw\\youtube_links\\comments.jsonl",
+    "errors_csv": "C:\\Users\\Admin\\Desktop\\voz_crawler\\data\\raw\\youtube_links\\errors.csv"
+  }
+}

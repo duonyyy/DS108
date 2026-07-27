@@ -1,0 +1,22 @@
+{
+  "source_csv": "C:\\Users\\Admin\\Desktop\\DS108\\Crawler\\data\\raw\\voz_comments.csv",
+  "output_dir": "C:\\Users\\Admin\\Desktop\\voz_crawler\\data\\dataset",
+  "seed": 42,
+  "split_strategy": "by_thread",
+  "split_counts": {
+    "train": 814,
+    "val": 118,
+    "test": 96
+  },
+  "split_thread_counts": {
+    "train": 47,
+    "val": 6,
+    "test": 6
+  },
+  "stats": {
+    "raw_rows": 1053,
+    "dropped_empty_comment": 25,
+    "kept_rows": 1028,
+    "threads": 59
+  }
+}

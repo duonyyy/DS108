@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "language": "vi",
+  "region_code": "VN",
+  "note": "Từ khóa chỉ dùng để truy xuất video liên quan, không được dùng trực tiếp làm nhãn TOXIC/HATE. Bình luận phải được gán nhãn độc lập.",
+  "generic_toxic_modifiers": ["kỳ thị", "miệt thị", "phân biệt", "xúc phạm", "công kích", "nhục mạ", "chế giễu", "tẩy chay", "ghét", "anti", "body shaming", "toxic", "hate speech"],
+  "categories": {
+    "LGBTQ+": {
+      "neutral_keywords": ["LGBT", "LGBTQ", "đồng tính", "người đồng tính", "gay", "lesbian", "chuyển giới", "người chuyển giới", "song tính", "phi nhị nguyên", "come out", "pride", "hôn nhân đồng giới"],
+      "toxic_enriched_keywords": ["kỳ thị LGBT", "miệt thị đồng tính", "ghét người đồng tính", "xúc phạm người chuyển giới", "phản đối LGBT", "anti LGBT"],
+      "hashtags": ["lgbt", "lgbtq", "dongtinh", "gay", "lesbian", "chuyengioi", "pride", "honnhanđonggioi"]
+    },
+    "Vùng miền": {
+      "neutral_keywords": ["vùng miền", "miền Bắc", "miền Trung", "miền Nam", "miền Tây", "người Bắc", "người Trung", "người Nam", "dân tỉnh", "tỉnh lẻ", "Hà Nội", "Huế", "Đà Nẵng", "Sài Gòn"],
+      "toxic_enriched_keywords": ["kỳ thị vùng miền", "phân biệt vùng miền", "miệt thị vùng miền", "chửi người Bắc", "chửi người Trung", "chửi người Nam", "coi thường dân tỉnh"],
+      "hashtags": ["vungmien", "mienbac", "mientrung", "miennam", "mientay", "hanoi", "hue", "danang", "saigon"]
+    },
+    "Tôn giáo": {
+      "neutral_keywords": ["tôn giáo", "Phật giáo", "Công giáo", "Thiên Chúa giáo", "Tin Lành", "Hồi giáo", "Cao Đài", "Hòa Hảo", "vô thần", "tín ngưỡng"],
+      "toxic_enriched_keywords": ["kỳ thị tôn giáo", "xúc phạm tôn giáo", "miệt thị tôn giáo", "chế giễu tôn giáo", "ghét tôn giáo", "anti tôn giáo"],
+      "hashtags": ["tongiao", "phatgiao", "conggiao", "thienchuagiao", "tinlanh", "hoigiao", "caodai", "hoahao"]
+    },
+    "Giới tính": {
+      "neutral_keywords": ["giới tính", "bình đẳng giới", "phụ nữ", "đàn ông", "nữ quyền", "nam quyền", "mẹ đơn thân", "trọng nam khinh nữ", "sexism", "misogyny"],
+      "toxic_enriched_keywords": ["phân biệt giới tính", "miệt thị phụ nữ", "ghét phụ nữ", "coi thường phụ nữ", "xúc phạm đàn ông", "công kích giới tính", "trọng nam khinh nữ"],
+      "hashtags": ["gioitinh", "binhdanggioi", "phunu", "danong", "nuquyen", "namquyen", "sexism", "misogyny"]
+    },
+    "Ngoại hình": {
+      "neutral_keywords": ["ngoại hình", "body shaming", "cân nặng", "béo", "mập", "gầy", "lùn", "cao", "mụn", "sẹo", "màu da", "tóc"],
+      "toxic_enriched_keywords": ["miệt thị ngoại hình", "xúc phạm ngoại hình", "chê béo", "chê xấu", "miệt thị cân nặng", "body shaming", "chế giễu ngoại hình"],
+      "hashtags": ["ngoaihinh", "bodyshaming", "cannang", "beo", "map", "gay", "lun", "mun", "seo"]
+    },
+    "Bệnh lý": {
+      "neutral_keywords": ["bệnh lý", "người bệnh", "HIV", "AIDS", "ung thư", "trầm cảm", "tự kỷ", "hội chứng Down", "tâm thần", "khuyết tật", "bệnh hiếm"],
+      "toxic_enriched_keywords": ["kỳ thị HIV", "kỳ thị người bệnh", "miệt thị người bệnh", "chế giễu tự kỷ", "xúc phạm người khuyết tật", "chửi người tâm thần", "phân biệt người bệnh"],
+      "hashtags": ["benhly", "hiv", "aids", "ungthu", "tramcam", "tuky", "down", "tamthan", "khuyettat", "benhhiem"]
+    }
+  }
+}
