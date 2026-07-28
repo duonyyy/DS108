@@ -18,7 +18,7 @@ scripts/                         Workflow/CLI, chia theo nền tảng
     ├──► src/voz_crawler_core/   Adapter HTTP/Playwright riêng cho VOZ
     │
     ├──► config/                 Cấu hình có version, không chứa secret
-    └──► data/                   Input, raw output, dataset và runtime state
+    └──► data/                   Output chia theo từng nền tảng và runtime state
 ```
 
 `scripts/` chứa orchestration và xử lý API riêng cho từng nền tảng.
@@ -34,17 +34,24 @@ config/keywords_vi.json
           ▼
 YouTube / TikTok workflows
           │
-          ▼
-data/raw/{platform}_comments.csv
+          ├──────────────► data/youtube/youtube_comments_keywords.csv
+          └──────────────► data/tiktok/tiktok_comments.csv
 
-30 YouTube URLs ───────────► data/raw/youtube_links/
+Danh sách YouTube URLs ─────► data/youtube/youtube_links/
 
-Reddit OAuth workflow ─────────► data/raw/reddit_comments.csv
+Reddit OAuth workflow ─────────► data/reddit/reddit_comments.csv
 
-data/*.html ─► thread_urls.txt ─► data/raw/voz_comments.csv|json
-                                         │
-                                         ▼
-                                  data/dataset/
+data/voz/*.html ─► data/voz/thread_urls.txt
+                           │
+                           ▼
+                  data/voz/voz_comments.csv|json
+                           │
+                           ▼
+                  data/voz/dataset/
+
+Facebook workflows ────────────► data/facebook/
+
+Threads workflow ──────────────► data/thread_city/thread_city.csv
 ```
 
 Checkpoint và profile trình duyệt là trạng thái tạm trong
@@ -67,14 +74,15 @@ comment_id, author, published_at, comment
 Hai luồng VOZ giữ schema giàu thông tin riêng nhưng vẫn có alias `title` và
 `comment`. Việc ép dữ liệu VOZ lịch sử sang toàn bộ schema đa nền tảng ngay
 trong crawler sẽ gây migration không cần thiết; `prepare_dataset.py` tạo bản
-dẫn xuất trong `data/dataset/`.
+dẫn xuất trong `data/voz/dataset/`.
 
 ## Chính sách ghi và migration
 
 1. Crawler đa nền tảng ghi nối tiếp và không xóa CSV cũ.
 2. Header cũ chỉ được tự nâng cấp khi mọi cột đều tương thích schema chuẩn.
 3. Nếu gặp cột lạ, writer dừng để tránh mất dữ liệu.
-4. Không tự động di chuyển `data/raw/voz_comments.*` hoặc nội dung `archive/`.
+4. Không tự động di chuyển dữ liệu trong các thư mục nền tảng hoặc nội dung
+   `archive/`.
 5. Thay đổi đường dẫn mặc định phải được khai báo trong
    `comment_crawler.paths`, không lặp hằng số ở từng script.
 

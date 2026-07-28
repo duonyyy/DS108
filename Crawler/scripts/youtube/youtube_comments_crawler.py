@@ -4,7 +4,7 @@ Thu thập metadata video và bình luận công khai từ YouTube Data API v3.
 
 Đầu ra:
 - videos.csv: metadata của video
-- comments.csv: mỗi bình luận là một dòng
+- youtube_comments_link.csv: mỗi bình luận là một dòng
 - comments.jsonl: cùng dữ liệu ở định dạng JSON Lines
 - errors.csv: video bị xóa, riêng tư, tắt bình luận hoặc lỗi API
 - summary.json: thống kê lần chạy
@@ -55,39 +55,65 @@ import requests
 API_ROOT = "https://www.googleapis.com/youtube/v3"
 VIDEO_ID_RE = re.compile(r"^[A-Za-z0-9_-]{11}$")
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_OUTPUT_DIR = ROOT / "data" / "raw" / "youtube_links"
+DEFAULT_OUTPUT_DIR = ROOT / "data" / "youtube" / "youtube_links"
 
 DEFAULT_VIDEO_URLS = [
-    "https://www.youtube.com/watch?v=DZsLH7-Blns",
-    "https://www.youtube.com/watch?v=JtKAvuW53_E",
-    "https://www.youtube.com/watch?v=L19nxlo2nVM",
-    "https://www.youtube.com/watch?v=MYaDiToxAc8",
-    "https://www.youtube.com/watch?v=JBcLMw6GSZU",
-    "https://www.youtube.com/watch?v=YHGX1v5FibI",
-    "https://www.youtube.com/watch?v=GhvZrRyyeIs",
-    "https://www.youtube.com/watch?v=jWIxZnu9ysI",
-    "https://www.youtube.com/watch?v=ImTVgQ1upnY",
-    "https://www.youtube.com/watch?v=_EFZWitEync",
-    "https://www.youtube.com/watch?v=2y7cRNXtAV4",
-    "https://www.youtube.com/watch?v=KGu2ks_XmU0",
-    "https://www.youtube.com/watch?v=ChxKCVSOmgg",
-    "https://www.youtube.com/watch?v=bUd3BqDeHGs",
-    "https://www.youtube.com/watch?v=rLMGkE5VKrU",
-    "https://www.youtube.com/watch?v=bk2AfEm2xS0",
-    "https://www.youtube.com/watch?v=A-Cv_aa5dRs",
-    "https://www.youtube.com/watch?v=LHQodXrcfRo",
-    "https://www.youtube.com/watch?v=KD1CuWiX2Co",
-    "https://www.youtube.com/watch?v=Yd0o5oISSqM",
-    "https://www.youtube.com/watch?v=sRHFxiWp5rc",
-    "https://www.youtube.com/watch?v=mZWJFhxt7yw",
-    "https://www.youtube.com/watch?v=4ghbI5Y1mT8",
-    "https://www.youtube.com/watch?v=u_r7f_adfck",
-    "https://www.youtube.com/watch?v=wQS3_EEHfvM",
-    "https://www.youtube.com/watch?v=k9O2uOXXaNE",
-    "https://www.youtube.com/watch?v=S2lQ9BB76kI",
-    "https://www.youtube.com/watch?v=RP28H5JA3Zo",
-    "https://www.youtube.com/watch?v=pDFKpAFya1s",
-    "https://www.youtube.com/watch?v=XGEDGdSlmRQ",
+    # "https://www.youtube.com/watch?v=DZsLH7-Blns",
+    # "https://www.youtube.com/watch?v=JtKAvuW53_E",
+    # "https://www.youtube.com/watch?v=L19nxlo2nVM",
+    # "https://www.youtube.com/watch?v=MYaDiToxAc8",
+    # "https://www.youtube.com/watch?v=JBcLMw6GSZU",
+    # "https://www.youtube.com/watch?v=YHGX1v5FibI",
+    # "https://www.youtube.com/watch?v=GhvZrRyyeIs",
+    # "https://www.youtube.com/watch?v=jWIxZnu9ysI",
+    # "https://www.youtube.com/watch?v=ImTVgQ1upnY",
+    # "https://www.youtube.com/watch?v=_EFZWitEync",
+    # "https://www.youtube.com/watch?v=2y7cRNXtAV4",
+    # "https://www.youtube.com/watch?v=KGu2ks_XmU0",
+    # "https://www.youtube.com/watch?v=ChxKCVSOmgg",
+    # "https://www.youtube.com/watch?v=bUd3BqDeHGs",
+    # "https://www.youtube.com/watch?v=rLMGkE5VKrU",
+    # "https://www.youtube.com/watch?v=bk2AfEm2xS0",
+    # "https://www.youtube.com/watch?v=A-Cv_aa5dRs",
+    # "https://www.youtube.com/watch?v=LHQodXrcfRo",
+    # "https://www.youtube.com/watch?v=KD1CuWiX2Co",
+    # "https://www.youtube.com/watch?v=Yd0o5oISSqM",
+    # "https://www.youtube.com/watch?v=sRHFxiWp5rc",
+    # "https://www.youtube.com/watch?v=mZWJFhxt7yw",
+    # "https://www.youtube.com/watch?v=4ghbI5Y1mT8",
+    # "https://www.youtube.com/watch?v=u_r7f_adfck",
+    # "https://www.youtube.com/watch?v=wQS3_EEHfvM",
+    # "https://www.youtube.com/watch?v=k9O2uOXXaNE",
+    # "https://www.youtube.com/watch?v=S2lQ9BB76kI",
+    # "https://www.youtube.com/watch?v=RP28H5JA3Zo",
+    # "https://www.youtube.com/watch?v=pDFKpAFya1s",
+    # "https://www.youtube.com/watch?v=XGEDGdSlmRQ",
+    # " https://www.youtube.com/watch?v=vC1kxao-vKU"
+    # "https://www.youtube.com/watch?v=n9DATHwDcqs",
+    # "https://www.youtube.com/watch?v=aTlqH1djttg",
+    # "https://www.youtube.com/watch?v=iKLrfxGwfys",
+    # "https://www.youtube.com/watch?v=qltZn6sV5_o",
+    # "https://www.youtube.com/watch?v=uK5USxRR7iI",
+    # "https://www.youtube.com/watch?v=_r8rwew3DDY",
+    # "https://www.youtube.com/watch?v=QWrLA_SoJGY",
+    # "https://www.youtube.com/watch?v=eYwrg4VtscQ",
+    # "https://www.youtube.com/watch?v=l3JdTYIHn-o",
+    # "https://www.youtube.com/watch?v=oyEOohYtgvI",
+    # "https://www.youtube.com/watch?v=7kO_ALcwNAw",
+    # "https://www.youtube.com/watch?v=6aOSom-T6QA",
+    # "https://www.youtube.com/watch?v=CtpkQQGPWn4",
+    # "https://www.youtube.com/watch?v=Wv3QtKNnATY",
+    # "https://www.youtube.com/watch?v=9N_Viiudrp0",
+    # "https://www.youtube.com/watch?v=NrYrLV0oaQ0",
+    # "https://www.youtube.com/watch?v=UB7qPhTQe-k",
+    # "https://www.youtube.com/watch?v=N-AkBvnWhOo",
+    # "https://www.youtube.com/watch?v=XXuRl7fhfJw"
+    # 
+    "https://www.youtube.com/watch?v=u-WC6EX1ahA",
+    "https://www.youtube.com/watch?v=2-NFuX4x5jo",
+    "https://www.youtube.com/watch?v=E0j17u1a260",
+    "https://www.youtube.com/watch?v=gHguLIMFdQY"
+
 ]
 
 VIDEO_FIELDS = [
@@ -628,7 +654,7 @@ def parse_args() -> argparse.Namespace:
         "--out-dir",
         type=Path,
         default=DEFAULT_OUTPUT_DIR,
-        help="Thư mục đầu ra; mặc định: data/raw/youtube_links",
+        help="Thư mục đầu ra; mặc định: data/youtube/youtube_links",
     )
     parser.add_argument(
         "--max-comments-per-video",
@@ -695,7 +721,7 @@ def main() -> int:
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
     videos_path = args.out_dir / "videos.csv"
-    comments_csv_path = args.out_dir / "comments.csv"
+    comments_csv_path = args.out_dir / "youtube_comments_link.csv"
     comments_jsonl_path = args.out_dir / "comments.jsonl"
     errors_path = args.out_dir / "errors.csv"
     summary_path = args.out_dir / "summary.json"

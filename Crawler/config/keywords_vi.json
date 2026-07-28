@@ -3,37 +3,810 @@
   "language": "vi",
   "region_code": "VN",
   "note": "Từ khóa chỉ dùng để truy xuất video liên quan, không được dùng trực tiếp làm nhãn TOXIC/HATE. Bình luận phải được gán nhãn độc lập.",
-  "generic_toxic_modifiers": ["kỳ thị", "miệt thị", "phân biệt", "xúc phạm", "công kích", "nhục mạ", "chế giễu", "tẩy chay", "ghét", "anti", "body shaming", "toxic", "hate speech"],
+  "generic_toxic_modifiers": [
+    "kỳ thị",
+    "miệt thị",
+    "phân biệt",
+    "xúc phạm",
+    "công kích",
+    "nhục mạ",
+    "chế giễu",
+    "tẩy chay",
+    "ghét",
+    "anti",
+    "body shaming",
+    "toxic",
+    "hate speech"
+  ],
   "categories": {
     "LGBTQ+": {
-      "neutral_keywords": ["LGBT", "LGBTQ", "đồng tính", "người đồng tính", "gay", "lesbian", "chuyển giới", "người chuyển giới", "song tính", "phi nhị nguyên", "come out", "pride", "hôn nhân đồng giới"],
-      "toxic_enriched_keywords": ["kỳ thị LGBT", "miệt thị đồng tính", "ghét người đồng tính", "xúc phạm người chuyển giới", "phản đối LGBT", "anti LGBT"],
-      "hashtags": ["lgbt", "lgbtq", "dongtinh", "gay", "lesbian", "chuyengioi", "pride", "honnhanđonggioi"]
+      "neutral_keywords": [
+        "LGBT",
+        "LGBTQ",
+        "đồng tính",
+        "người đồng tính",
+        "gay",
+        "lesbian",
+        "chuyển giới",
+        "người chuyển giới",
+        "song tính",
+        "phi nhị nguyên",
+        "come out",
+        "pride",
+        "hôn nhân đồng giới"
+      ],
+      "toxic_enriched_keywords": [
+        "kỳ thị LGBT",
+        "miệt thị đồng tính",
+        "ghét người đồng tính",
+        "xúc phạm người chuyển giới",
+        "phản đối LGBT",
+        "anti LGBT"
+      ],
+      "hashtags": [
+        "lgbt",
+        "lgbtq",
+        "dongtinh",
+        "gay",
+        "lesbian",
+        "chuyengioi",
+        "pride",
+        "honnhanđonggioi"
+      ]
     },
     "Vùng miền": {
-      "neutral_keywords": ["vùng miền", "miền Bắc", "miền Trung", "miền Nam", "miền Tây", "người Bắc", "người Trung", "người Nam", "dân tỉnh", "tỉnh lẻ", "Hà Nội", "Huế", "Đà Nẵng", "Sài Gòn"],
-      "toxic_enriched_keywords": ["kỳ thị vùng miền", "phân biệt vùng miền", "miệt thị vùng miền", "chửi người Bắc", "chửi người Trung", "chửi người Nam", "coi thường dân tỉnh"],
-      "hashtags": ["vungmien", "mienbac", "mientrung", "miennam", "mientay", "hanoi", "hue", "danang", "saigon"]
+      "neutral_keywords": [
+        "vùng miền",
+        "miền Bắc",
+        "miền Trung",
+        "miền Nam",
+        "miền Tây",
+        "người Bắc",
+        "người Trung",
+        "người Nam",
+        "dân tỉnh",
+        "tỉnh lẻ",
+        "Hà Nội",
+        "Huế",
+        "Đà Nẵng",
+        "Sài Gòn"
+      ],
+      "toxic_enriched_keywords": [
+        "kỳ thị vùng miền",
+        "phân biệt vùng miền",
+        "miệt thị vùng miền",
+        "chửi người Bắc",
+        "chửi người Trung",
+        "chửi người Nam",
+        "coi thường dân tỉnh"
+      ],
+      "hashtags": [
+        "vungmien",
+        "mienbac",
+        "mientrung",
+        "miennam",
+        "mientay",
+        "hanoi",
+        "hue",
+        "danang",
+        "saigon"
+      ]
     },
     "Tôn giáo": {
-      "neutral_keywords": ["tôn giáo", "Phật giáo", "Công giáo", "Thiên Chúa giáo", "Tin Lành", "Hồi giáo", "Cao Đài", "Hòa Hảo", "vô thần", "tín ngưỡng"],
-      "toxic_enriched_keywords": ["kỳ thị tôn giáo", "xúc phạm tôn giáo", "miệt thị tôn giáo", "chế giễu tôn giáo", "ghét tôn giáo", "anti tôn giáo"],
-      "hashtags": ["tongiao", "phatgiao", "conggiao", "thienchuagiao", "tinlanh", "hoigiao", "caodai", "hoahao"]
+      "neutral_keywords": [
+        "tôn giáo",
+        "Phật giáo",
+        "Công giáo",
+        "Thiên Chúa giáo",
+        "Tin Lành",
+        "Hồi giáo",
+        "Cao Đài",
+        "Hòa Hảo",
+        "vô thần",
+        "tín ngưỡng"
+      ],
+      "toxic_enriched_keywords": [
+        "kỳ thị tôn giáo",
+        "xúc phạm tôn giáo",
+        "miệt thị tôn giáo",
+        "chế giễu tôn giáo",
+        "ghét tôn giáo",
+        "anti tôn giáo"
+      ],
+      "hashtags": [
+        "tongiao",
+        "phatgiao",
+        "conggiao",
+        "thienchuagiao",
+        "tinlanh",
+        "hoigiao",
+        "caodai",
+        "hoahao"
+      ]
     },
     "Giới tính": {
-      "neutral_keywords": ["giới tính", "bình đẳng giới", "phụ nữ", "đàn ông", "nữ quyền", "nam quyền", "mẹ đơn thân", "trọng nam khinh nữ", "sexism", "misogyny"],
-      "toxic_enriched_keywords": ["phân biệt giới tính", "miệt thị phụ nữ", "ghét phụ nữ", "coi thường phụ nữ", "xúc phạm đàn ông", "công kích giới tính", "trọng nam khinh nữ"],
-      "hashtags": ["gioitinh", "binhdanggioi", "phunu", "danong", "nuquyen", "namquyen", "sexism", "misogyny"]
+      "neutral_keywords": [
+        "giới tính",
+        "bình đẳng giới",
+        "phụ nữ",
+        "đàn ông",
+        "nữ quyền",
+        "nam quyền",
+        "mẹ đơn thân",
+        "trọng nam khinh nữ",
+        "sexism",
+        "misogyny"
+      ],
+      "toxic_enriched_keywords": [
+        "phân biệt giới tính",
+        "miệt thị phụ nữ",
+        "ghét phụ nữ",
+        "coi thường phụ nữ",
+        "xúc phạm đàn ông",
+        "công kích giới tính",
+        "trọng nam khinh nữ"
+      ],
+      "hashtags": [
+        "gioitinh",
+        "binhdanggioi",
+        "phunu",
+        "danong",
+        "nuquyen",
+        "namquyen",
+        "sexism",
+        "misogyny"
+      ]
     },
     "Ngoại hình": {
-      "neutral_keywords": ["ngoại hình", "body shaming", "cân nặng", "béo", "mập", "gầy", "lùn", "cao", "mụn", "sẹo", "màu da", "tóc"],
-      "toxic_enriched_keywords": ["miệt thị ngoại hình", "xúc phạm ngoại hình", "chê béo", "chê xấu", "miệt thị cân nặng", "body shaming", "chế giễu ngoại hình"],
-      "hashtags": ["ngoaihinh", "bodyshaming", "cannang", "beo", "map", "gay", "lun", "mun", "seo"]
+      "neutral_keywords": [
+        "ngoại hình",
+        "body shaming",
+        "cân nặng",
+        "béo",
+        "mập",
+        "gầy",
+        "lùn",
+        "cao",
+        "mụn",
+        "sẹo",
+        "màu da",
+        "tóc"
+      ],
+      "toxic_enriched_keywords": [
+        "miệt thị ngoại hình",
+        "xúc phạm ngoại hình",
+        "chê béo",
+        "chê xấu",
+        "miệt thị cân nặng",
+        "body shaming",
+        "chế giễu ngoại hình"
+      ],
+      "hashtags": [
+        "ngoaihinh",
+        "bodyshaming",
+        "cannang",
+        "beo",
+        "map",
+        "gay",
+        "lun",
+        "mun",
+        "seo"
+      ]
     },
     "Bệnh lý": {
-      "neutral_keywords": ["bệnh lý", "người bệnh", "HIV", "AIDS", "ung thư", "trầm cảm", "tự kỷ", "hội chứng Down", "tâm thần", "khuyết tật", "bệnh hiếm"],
-      "toxic_enriched_keywords": ["kỳ thị HIV", "kỳ thị người bệnh", "miệt thị người bệnh", "chế giễu tự kỷ", "xúc phạm người khuyết tật", "chửi người tâm thần", "phân biệt người bệnh"],
-      "hashtags": ["benhly", "hiv", "aids", "ungthu", "tramcam", "tuky", "down", "tamthan", "khuyettat", "benhhiem"]
+      "neutral_keywords": [
+        "bệnh lý",
+        "người bệnh",
+        "HIV",
+        "AIDS",
+        "ung thư",
+        "trầm cảm",
+        "tự kỷ",
+        "hội chứng Down",
+        "tâm thần",
+        "khuyết tật",
+        "bệnh hiếm"
+      ],
+      "toxic_enriched_keywords": [
+        "kỳ thị HIV",
+        "kỳ thị người bệnh",
+        "miệt thị người bệnh",
+        "chế giễu tự kỷ",
+        "xúc phạm người khuyết tật",
+        "chửi người tâm thần",
+        "phân biệt người bệnh"
+      ],
+      "hashtags": [
+        "benhly",
+        "hiv",
+        "aids",
+        "ungthu",
+        "tramcam",
+        "tuky",
+        "down",
+        "tamthan",
+        "khuyettat",
+        "benhhiem"
+      ]
+    },
+    "Drama và người nổi tiếng": {
+      "neutral_keywords": [
+        "drama TikTok",
+        "drama showbiz",
+        "người nổi tiếng",
+        "TikToker",
+        "KOL",
+        "KOC",
+        "idol",
+        "streamer",
+        "ca sĩ",
+        "diễn viên",
+        "hoa hậu",
+        "influencer",
+        "livestream"
+      ],
+      "hot_keywords": [
+        "drama mới nhất",
+        "phốt TikToker",
+        "bóc phốt",
+        "clip xin lỗi",
+        "lên tiếng",
+        "đính chính",
+        "họp báo",
+        "khóa bình luận",
+        "xóa video",
+        "lộ tin nhắn",
+        "lộ clip",
+        "người trong cuộc",
+        "cái kết drama",
+        "tóm tắt drama"
+      ],
+      "hashtags": [
+        "drama",
+        "showbiz",
+        "tiktoker",
+        "kol",
+        "koc",
+        "bocphot",
+        "phot",
+        "livestream",
+        "reaction"
+      ]
+    },
+    "Tình yêu và mối quan hệ": {
+      "neutral_keywords": [
+        "tình yêu",
+        "hẹn hò",
+        "người yêu",
+        "vợ chồng",
+        "yêu xa",
+        "tình cũ",
+        "crush",
+        "độc thân",
+        "mối quan hệ",
+        "dating"
+      ],
+      "hot_keywords": [
+        "red flag",
+        "green flag",
+        "cắm sừng",
+        "ngoại tình",
+        "chia tay",
+        "quay lại với người yêu cũ",
+        "toxic relationship",
+        "mập mờ",
+        "ghosting",
+        "situationship",
+        "thử lòng người yêu",
+        "bắt quả tang",
+        "cầu hôn",
+        "đám cưới",
+        "chuyện tình yêu"
+      ],
+      "hashtags": [
+        "tinhyeu",
+        "henho",
+        "crush",
+        "redflag",
+        "greenflag",
+        "chiatay",
+        "ngoaitinh",
+        "camxung",
+        "damcuoi"
+      ]
+    },
+    "Gia đình": {
+      "neutral_keywords": [
+        "gia đình",
+        "bố mẹ",
+        "cha mẹ",
+        "con cái",
+        "anh chị em",
+        "mẹ chồng",
+        "nàng dâu",
+        "bố chồng",
+        "hôn nhân",
+        "nuôi con"
+      ],
+      "hot_keywords": [
+        "mâu thuẫn gia đình",
+        "mẹ chồng nàng dâu",
+        "áp lực gia đình",
+        "bố mẹ phản đối",
+        "gia đình chồng",
+        "gia đình vợ",
+        "ly hôn",
+        "giành quyền nuôi con",
+        "con nhà người ta",
+        "chuyện nhà tôi",
+        "camera gia đình"
+      ],
+      "hashtags": [
+        "giadinh",
+        "bome",
+        "mechongnangdau",
+        "honnhan",
+        "lyhon",
+        "nuoicon",
+        "chuyengiadinh"
+      ]
+    },
+    "Học đường": {
+      "neutral_keywords": [
+        "học sinh",
+        "sinh viên",
+        "giáo viên",
+        "trường học",
+        "lớp học",
+        "đại học",
+        "ký túc xá",
+        "thi cử",
+        "tốt nghiệp",
+        "du học"
+      ],
+      "hot_keywords": [
+        "bắt nạt học đường",
+        "bạo lực học đường",
+        "drama lớp học",
+        "camera lớp học",
+        "giáo viên và học sinh",
+        "áp lực điểm số",
+        "review trường",
+        "review ngành học",
+        "chọn ngành",
+        "điểm thi",
+        "xét tuyển",
+        "một ngày đi học",
+        "đời sống sinh viên"
+      ],
+      "hashtags": [
+        "hocduong",
+        "hocsinh",
+        "sinhvien",
+        "truonghoc",
+        "daihoc",
+        "thicu",
+        "reviewtruong",
+        "baoluchocduong"
+      ]
+    },
+    "Công sở và nghề nghiệp": {
+      "neutral_keywords": [
+        "công sở",
+        "đi làm",
+        "nhân viên",
+        "đồng nghiệp",
+        "sếp",
+        "công ty",
+        "tuyển dụng",
+        "phỏng vấn",
+        "nghề nghiệp",
+        "freelancer"
+      ],
+      "hot_keywords": [
+        "toxic workplace",
+        "sếp toxic",
+        "đồng nghiệp toxic",
+        "drama công sở",
+        "nghỉ việc",
+        "bị sa thải",
+        "nhảy việc",
+        "phỏng vấn xin việc",
+        "review công ty",
+        "lương bao nhiêu",
+        "một ngày đi làm",
+        "chuyện công sở",
+        "work from home",
+        "việc làm thêm"
+      ],
+      "hashtags": [
+        "congso",
+        "dilam",
+        "nghiviec",
+        "nhayviec",
+        "phongvan",
+        "reviewcongty",
+        "toxicworkplace",
+        "freelancer"
+      ]
+    },
+    "Tài chính và cảnh báo lừa đảo": {
+      "neutral_keywords": [
+        "tài chính cá nhân",
+        "tiết kiệm",
+        "đầu tư",
+        "ngân hàng",
+        "bảo hiểm",
+        "chứng khoán",
+        "crypto",
+        "kiếm tiền online",
+        "thu nhập",
+        "quản lý chi tiêu"
+      ],
+      "hot_keywords": [
+        "lừa đảo online",
+        "app lừa đảo",
+        "đa cấp",
+        "đầu tư lãi cao",
+        "mất tiền",
+        "chuyển khoản nhầm",
+        "giả mạo ngân hàng",
+        "giả danh công an",
+        "lừa đảo tuyển dụng",
+        "bóc phốt khóa học",
+        "cảnh báo lừa đảo",
+        "kiếm tiền TikTok",
+        "thu nhập thụ động"
+      ],
+      "hashtags": [
+        "taichinh",
+        "dautu",
+        "tietkiem",
+        "chungkhoan",
+        "crypto",
+        "luadao",
+        "canhbaoluadao",
+        "kiemtienonline"
+      ]
+    },
+    "TikTok Shop và mua sắm": {
+      "neutral_keywords": [
+        "TikTok Shop",
+        "mua sắm",
+        "review sản phẩm",
+        "KOC review",
+        "unbox",
+        "haul",
+        "deal",
+        "flash sale",
+        "voucher",
+        "livestream bán hàng"
+      ],
+      "hot_keywords": [
+        "sản phẩm viral",
+        "món đồ TikTok",
+        "TikTok made me buy it",
+        "review có tâm",
+        "review chân thật",
+        "test sản phẩm",
+        "đừng mua",
+        "có đáng tiền không",
+        "hàng thật hàng giả",
+        "giá sốc",
+        "deal hời",
+        "chốt đơn",
+        "săn sale",
+        "mua lại lần hai"
+      ],
+      "hashtags": [
+        "tiktokshop",
+        "review",
+        "reviewthat",
+        "unbox",
+        "haul",
+        "dealhot",
+        "sansale",
+        "chotdon",
+        "kocreview"
+      ]
+    },
+    "AI và công nghệ": {
+      "neutral_keywords": [
+        "AI",
+        "trí tuệ nhân tạo",
+        "ChatGPT",
+        "Gemini",
+        "Claude",
+        "deepfake",
+        "robot",
+        "công nghệ",
+        "điện thoại",
+        "ứng dụng",
+        "phần mềm"
+      ],
+      "hot_keywords": [
+        "AI tạo video",
+        "AI tạo ảnh",
+        "AI biến hình",
+        "AI cover",
+        "AI clone giọng",
+        "video deepfake",
+        "ảnh thật hay AI",
+        "công cụ AI miễn phí",
+        "mẹo ChatGPT",
+        "AI thay thế công việc",
+        "app đang hot",
+        "thủ thuật điện thoại",
+        "review điện thoại",
+        "đồ công nghệ viral"
+      ],
+      "hashtags": [
+        "ai",
+        "chatgpt",
+        "gemini",
+        "deepfake",
+        "congnghe",
+        "aitools",
+        "aivideo",
+        "reviewcongnghe",
+        "thuthuat"
+      ]
+    },
+    "Sức khỏe tinh thần và chữa lành": {
+      "neutral_keywords": [
+        "sức khỏe tinh thần",
+        "chữa lành",
+        "tâm lý",
+        "trầm cảm",
+        "lo âu",
+        "stress",
+        "kiệt sức",
+        "burnout",
+        "tự chăm sóc",
+        "self-care"
+      ],
+      "hot_keywords": [
+        "healing",
+        "hành trình chữa lành",
+        "tổn thương tuổi thơ",
+        "đứa trẻ bên trong",
+        "overthinking",
+        "mất động lực",
+        "áp lực đồng trang lứa",
+        "khủng hoảng tuổi 20",
+        "khủng hoảng tuổi 30",
+        "nghỉ ngơi không có lỗi",
+        "digital detox",
+        "sống chậm",
+        "nhật ký chữa lành"
+      ],
+      "hashtags": [
+        "chualanh",
+        "healing",
+        "suckhoetinhthan",
+        "selfcare",
+        "overthinking",
+        "stress",
+        "burnout",
+        "songcham"
+      ]
+    },
+    "Làm đẹp và skincare": {
+      "neutral_keywords": [
+        "làm đẹp",
+        "skincare",
+        "makeup",
+        "chăm sóc da",
+        "chăm sóc tóc",
+        "mỹ phẩm",
+        "nước hoa",
+        "phẫu thuật thẩm mỹ",
+        "spa",
+        "nail"
+      ],
+      "hot_keywords": [
+        "makeup biến hình",
+        "before after",
+        "glass skin",
+        "K-beauty",
+        "routine skincare",
+        "treatment da",
+        "trị mụn",
+        "review mỹ phẩm",
+        "mỹ phẩm viral",
+        "dupe mỹ phẩm",
+        "makeup không filter",
+        "test chống nước",
+        "mặt mộc",
+        "lột xác"
+      ],
+      "hashtags": [
+        "lamdep",
+        "skincare",
+        "makeup",
+        "kbeauty",
+        "glassskin",
+        "trimun",
+        "reviewmypham",
+        "beforeafter",
+        "lotxac"
+      ]
+    },
+    "Ẩm thực": {
+      "neutral_keywords": [
+        "ẩm thực",
+        "ăn uống",
+        "nấu ăn",
+        "review quán",
+        "món ngon",
+        "đồ ăn",
+        "đặc sản",
+        "mukbang",
+        "ASMR ăn uống",
+        "street food"
+      ],
+      "hot_keywords": [
+        "quán đang hot",
+        "món ăn viral",
+        "ăn thử",
+        "review thật",
+        "quán TikTok",
+        "buffet",
+        "ăn sập",
+        "food tour",
+        "quán vỉa hè",
+        "món ăn tuổi thơ",
+        "công thức viral",
+        "nấu ăn tại nhà",
+        "bếp sinh viên",
+        "ăn gì hôm nay"
+      ],
+      "hashtags": [
+        "amthuc",
+        "anuong",
+        "reviewquan",
+        "mukbang",
+        "streetfood",
+        "foodtour",
+        "monngon",
+        "angi",
+        "congthucnauan"
+      ]
+    },
+    "Du lịch và trải nghiệm": {
+      "neutral_keywords": [
+        "du lịch",
+        "review địa điểm",
+        "check-in",
+        "khách sạn",
+        "homestay",
+        "resort",
+        "phượt",
+        "du lịch tự túc",
+        "vé máy bay",
+        "ẩm thực địa phương"
+      ],
+      "hot_keywords": [
+        "địa điểm đang hot",
+        "địa điểm ít người biết",
+        "hidden gem",
+        "review khách sạn",
+        "review homestay",
+        "du lịch giá rẻ",
+        "lịch trình du lịch",
+        "chi phí chuyến đi",
+        "du lịch một mình",
+        "đi đâu cuối tuần",
+        "địa điểm sống ảo",
+        "trải nghiệm thật",
+        "tour lừa đảo"
+      ],
+      "hashtags": [
+        "dulich",
+        "reviewdulich",
+        "checkin",
+        "homestay",
+        "khachsan",
+        "phuot",
+        "hiddenGem",
+        "dulichtutuc",
+        "diDauCuoiTuan"
+      ]
+    },
+    "Hài hước và meme": {
+      "neutral_keywords": [
+        "hài hước",
+        "meme",
+        "tiểu phẩm",
+        "parody",
+        "reaction",
+        "chuyện vui",
+        "tình huống hài",
+        "content giải trí",
+        "nhạc chế"
+      ],
+      "hot_keywords": [
+        "meme TikTok",
+        "brainrot",
+        "meme vô tri",
+        "hài nhảm",
+        "cười xỉu",
+        "plot twist",
+        "cái kết bất ngờ",
+        "âm thanh viral",
+        "template CapCut",
+        "trend biến hình",
+        "reaction hài",
+        "nhạc chế viral"
+      ],
+      "hashtags": [
+        "haihuoc",
+        "meme",
+        "brainrot",
+        "votri",
+        "cuoixiu",
+        "parody",
+        "reaction",
+        "nhacche",
+        "capcuttemplate"
+      ]
     }
-  }
+  },
+  "global_viral_format_keywords": [
+    "POV",
+    "storytime",
+    "chuyện là",
+    "không ai nói cho bạn biết",
+    "sự thật về",
+    "góc khuất",
+    "bí mật",
+    "hậu trường",
+    "behind the scenes",
+    "một ngày của tôi",
+    "day in my life",
+    "lần đầu trải nghiệm",
+    "review thật",
+    "trải nghiệm thật",
+    "test thật",
+    "before after",
+    "biến hình",
+    "lột xác",
+    "phần 1",
+    "phần 2",
+    "cái kết",
+    "plot twist",
+    "đừng mua nếu",
+    "có đáng tiền không",
+    "mọi người nghĩ sao",
+    "xin ý kiến cộng đồng",
+    "ai cũng từng",
+    "tôi đã thử",
+    "7 ngày thử",
+    "30 ngày thử"
+  ],
+  "global_hot_modifiers": [
+    "hot",
+    "viral",
+    "xu hướng",
+    "trend",
+    "hot trend",
+    "đang nổi",
+    "gây sốt",
+    "gây bão",
+    "triệu view",
+    "lên xu hướng",
+    "FYP",
+    "đề xuất",
+    "tranh cãi",
+    "drama",
+    "bóc phốt",
+    "phốt",
+    "review",
+    "reaction",
+    "duet",
+    "stitch",
+    "livestream",
+    "clip full",
+    "video gốc"
+  ]
 }

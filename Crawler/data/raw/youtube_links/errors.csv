@@ -1,4 +1,0 @@
-﻿video_id,video_url,stage,status_code,reason,message
-bUd3BqDeHGs,https://www.youtube.com/watch?v=bUd3BqDeHGs,comments,403,commentsDisabled,"The video identified by the <code><a href=""/youtube/v3/docs/commentThreads/list#videoId"">videoId</a></code> parameter has disabled comments."
-Yd0o5oISSqM,https://www.youtube.com/watch?v=Yd0o5oISSqM,comments,403,commentsDisabled,"The video identified by the <code><a href=""/youtube/v3/docs/commentThreads/list#videoId"">videoId</a></code> parameter has disabled comments."
-wQS3_EEHfvM,https://www.youtube.com/watch?v=wQS3_EEHfvM,comments,403,commentsDisabled,"The video identified by the <code><a href=""/youtube/v3/docs/commentThreads/list#videoId"">videoId</a></code> parameter has disabled comments."

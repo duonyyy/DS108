@@ -74,9 +74,9 @@ get_script_dir <- function() {
 
 script_dir <- get_script_dir()
 # script nam tai: Crawler/scripts/threads_city/
-# data.csv nam tai: Crawler/data/dataset/
-# => di len 2 cap roi xuong data/dataset
-output_dir <- normalizePath(file.path(script_dir, "..", "..", "data", "dataset"), mustWork = FALSE)
+# thread_city.csv nam tai: Crawler/data/thread_city/
+# => di len 2 cap roi xuong data/thread_city
+output_dir <- normalizePath(file.path(script_dir, "..", "..", "data", "thread_city"), mustWork = FALSE)
 
 cookie_file <- path.expand("~/.threads_chromote_cookies.rds")
 
@@ -1339,8 +1339,8 @@ run_threads_crawler <- function() {
     mustWork = TRUE
   )
 
-  # --- Dung chung file data.csv, append ket qua moi ---
-  comments_csv <- file.path(normalized_output_dir, "data.csv")
+  # --- Dung chung file thread_city.csv, append ket qua moi ---
+  comments_csv <- file.path(normalized_output_dir, "thread_city.csv")
 
   run_id <- format(Sys.time(), "%Y%m%d_%H%M%S")
   debug_file <- file.path(
@@ -1351,7 +1351,7 @@ run_threads_crawler <- function() {
   all_posts <- empty_posts_output()
   all_comments <- empty_comments_output()
 
-  # Doc data.csv cu de lay danh sach post_id da crawl truoc do
+  # Doc thread_city.csv cu de lay danh sach post_id da crawl truoc do
   existing_post_ids <- character()
   if (file.exists(comments_csv)) {
     existing_data <- tryCatch(
@@ -1361,7 +1361,7 @@ run_threads_crawler <- function() {
     )
     if (!is.null(existing_data) && "post_id" %in% names(existing_data)) {
       existing_post_ids <- unique(existing_data$post_id)
-      message("Đã đọc data.csv: ", nrow(existing_data), " dòng, ",
+      message("Đã đọc thread_city.csv: ", nrow(existing_data), " dòng, ",
               length(existing_post_ids), " post_id đã có.")
     }
   }
@@ -1387,7 +1387,7 @@ run_threads_crawler <- function() {
 
   prepare_login(browser)
 
-  # Tao file data.csv voi header neu chua ton tai
+  # Tao file thread_city.csv voi header neu chua ton tai
   if (!file.exists(comments_csv)) {
     readr::write_excel_csv(comments_for_csv(all_comments), comments_csv, na = "")
   }
@@ -1425,7 +1425,7 @@ run_threads_crawler <- function() {
       if (post_id %in% crawled_post_ids) {
         message(
           "  Bài ", post_index, "/", nrow(search_posts),
-          " đã có trong data.csv, bỏ qua."
+          " đã có trong thread_city.csv, bỏ qua."
         )
         next
       }
@@ -1481,7 +1481,7 @@ run_threads_crawler <- function() {
         crawled_post_ids <- unique(c(crawled_post_ids, post_id))
       }
 
-      # Append comment moi vao data.csv (ghi noi, khong ghi de)
+      # Append comment moi vao thread_city.csv (ghi noi, khong ghi de)
       new_comments_for_post <- detail$comments
       if (nrow(new_comments_for_post) > 0) {
         readr::write_csv(
@@ -1516,7 +1516,7 @@ run_threads_crawler <- function() {
     )
   }
 
-  # Doc lai data.csv de dem tong so dong sau khi append
+  # Doc lai thread_city.csv de dem tong so dong sau khi append
   final_count <- tryCatch(
     nrow(readr::read_csv(comments_csv, col_types = readr::cols(.default = "c"),
                          show_col_types = FALSE)),
@@ -1527,7 +1527,7 @@ run_threads_crawler <- function() {
     "\nHoàn tất!\n",
     "- Số bài mới cào lần này: ", nrow(all_posts), "\n",
     "- Số comment mới lần này: ", nrow(all_comments), "\n",
-    "- Tổng số dòng trong data.csv: ", final_count, "\n",
+    "- Tổng số dòng trong thread_city.csv: ", final_count, "\n",
     "- Tối đa comment mỗi bài: ", max_comments_per_post, "\n",
     "- File: ", comments_csv, "\n",
     sep = ""

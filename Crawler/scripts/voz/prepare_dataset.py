@@ -199,7 +199,7 @@ def split_by_thread(
 def write_dataset_card(path: Path, metadata: dict[str, Any]) -> None:
     text = f"""# VOZ Comments Dataset
 
-Dataset prepared from public VOZ thread comments crawled into `data/raw/voz_comments.csv`.
+Dataset prepared from public VOZ thread comments crawled into `data/voz/voz_comments.csv`.
 
 ## Files
 
