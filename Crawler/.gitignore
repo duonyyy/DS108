@@ -10,3 +10,5 @@ data/*
 src/*.egg-info/
 config/*.before-*.json
 *.bak
+
+.env
